@@ -22,7 +22,7 @@ it talks about how to send {apo} from a command to another command.
 Sending options from a command to another command is a common operation.
 For example, `touch` command in GNU/Linux core-utils is a command
 to change the file timestemp,
-and it usually is used to create a new file by command line.
+and it is usually used to create a new file by command line.
 [,bash]
 ----
 touch /tmp/file
@@ -78,7 +78,7 @@ According to the definition of {i} in link:README.adoc[README.adoc],
 ${mkdir} ${1%/*}
 ${touch} $1
 ----
-Actually such a script may not work as expected do nothing
+Actually such a script may not work as expected
 if `${mkdir}` and `${touch}` is not set.
 To do a correct `./mkpath a/b/c/d`,
 we should run:
@@ -106,8 +106,8 @@ a/b/c/d
 ----
 
 {i} define that command options is in command,
-so all program options can be distinguished from each other.
-Otherwise 2 programs named the same.
+so all programs can distinguish all options from each other.
+Otherwise 2 programs are named the same.
 
 Some shell disable call a program in a variable(such as `fish`).
 But POSIX shell support this.

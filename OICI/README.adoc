@@ -29,5 +29,9 @@ ____
 ** If the _step_ call a program with {apo},
 	and the program and {apo} to sent are all in a variable.
 	And this _step_ just use this variable but not the program itself.
+* If all steps in a _stepset_ is compliant with {i},
+	the _stepset_ is compliant with {i}.
+* If all _stepset_ in a system is compliant with {i},
+	the system is is compliant with {i}.
 
 ---
