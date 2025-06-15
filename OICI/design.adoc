@@ -1,0 +1,113 @@
+:i: link:.[OCIC]
+:ii: pass:[<b>O</b>ptions <b>I</b>s <b>C</b>ommand <b>I</b>tself]
+:apo: argument/parameter/option
+
+= {i}
+
+== {i}
+
+{ii}
+
+---
+
+This page describe how and why {i} is designed.
+
+---
+
+=== a minimal example `mkpath`
+
+{i} is abbr of {ii},
+it talks about how to send {apo} from a command to another command.
+
+Sending options from a command to another command is a common operation.
+For example, `touch` command in GNU/Linux core-utils is a command
+to change the file timestemp,
+and it usually is used to create a new file by command line.
+[,bash]
+----
+touch /tmp/file
+----
+The command above will create a file named `file` in `/tmp` directory.
+
+In this case, if `/tmp` directory does not exist
+(although in Linux this rarely happended),
+touch will not make it.
+In fact touch has no ability to make a directory,
+to do that we need to use `mkdir` instead.
+
+So there may be a command to call `mkdir` and `touch`.
+For example, a bash shell script named `mkpath`, `cat mkpath` will show:
+[,bash]
+----
+#!/usr/bin/env bash
+
+mkdir ${1%/*}
+touch $1
+----
+Here `${1%/*}` is a bash variable syntax, strip characters before the 1st `/`.
+
+Now `./mkpath a/b` will auto try to make a directory `a/`.
+____
+This is not always valid. It would not work in several cases, such as when `a/` exists.
+____
+
+But `mkpath` still cannot make multiple level of path like `a/b/c`.
+To do that we need to add a option `-p` to `mkdir`.
+Just put it after `mkpath` and then in `mkpath` put it after `mkdir`
+is not a good idea.
+Although `-p` is only in `mkdir` but not in `touch`,
+both `touch` and `mkdir` has a `-m` option.
+[,bash]
+----
+$ touch --help | grep -- -m
+  -m                     change only the modification time
+                           modification time (-m): 'modify', 'mtime'
+$ mkdir --help | grep -- -m
+  -m, --mode=MODE   set file mode (as in chmod), not a=rwx - umask
+                    with their file modes unaffected by any -m option
+----
+So somtimes `mkpath` need to distinguish the option should be sent to `touch` or `mkdir`.
+This is a minal example for what {i} solved.
+
+According to the definition of {i} in link:README.adoc[README.adoc],
+`mkpath` should be:
+[,bash]
+----
+#!/usr/bin/env bash
+
+${mkdir} ${1%/*}
+${touch} $1
+----
+Actually such a script may not work as expected do nothing
+if `${mkdir}` and `${touch}` is not set.
+To do a correct `./mkpath a/b/c/d`,
+we should run:
+[,bash]
+----
+mkdir='mkdir -p' touch='touch' ./mkpath a/b/c/d
+----
+____
+Some shell may not contain syntax that set `variable=` before command.
+In such a case, add a `env` before them.
+[,bash]
+----
+env mkdir='mkdir -p' touch='touch' ./mkpath a/b/c/d
+----
+____
+
+After running command above, `find a` will show
+[,]
+----
+$ find a
+a
+a/b
+a/b/c
+a/b/c/d
+----
+
+{i} define that command options is in command,
+so all program options can be distinguished from each other.
+Otherwise 2 programs named the same.
+
+Some shell disable call a program in a variable(such as `fish`).
+But POSIX shell support this.

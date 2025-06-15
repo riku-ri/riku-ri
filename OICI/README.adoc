@@ -1,0 +1,33 @@
+:i: link:.[OCIC]
+:ii: pass:[<b>O</b>ptions <b>I</b>s <b>C</b>ommand <b>I</b>tself]
+:apo: argument/parameter/option
+
+= {i}
+
+== {i}
+
+{ii}
+
+---
+
+This page define {i} standard.
+
+---
+
+* {i} define steps that call other programs.
+	These steps is called _stepset_ in the following text.
++
+____
+Typically, a bash shell script is a _stepset_.
+____
+* {i} define each step in _stepset_.
+
+* For each _step_ in a _stepset_,
+	the _step_ is compliant with {i} *iff* the _step_ meet anyone of conditions in:
+** If the _step_ does not call a program;
+** If the _step_ call a program, but did not send any {apo}
+** If the _step_ call a program with {apo},
+	and the program and {apo} to sent are all in a variable.
+	And this _step_ just use this variable but not the program itself.
+
+---
