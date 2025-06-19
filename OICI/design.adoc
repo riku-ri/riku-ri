@@ -110,6 +110,17 @@ Otherwise 2 programs are named the same.
 Some shell disable call a program in a variable(such as `fish`).
 But POSIX shell support this.
 
+=== More about `mkpath`
+
+More details about `mkpath` is outside the scope of {i}.
+But there is indeed a file link:design/mkpath[`design/mkpath`],
+and it is in use.
+So here is a shortest description about more in it.
+
+It is just about the bash EXPANSION syntax.
+`${mkdir:-mkdir -p}` will be `mkdir -p` when `${mkdir}` is not set.
+`${touch:-touch}` is the same.
+
 == For non-shell programs
 
 The example above `mkpath` is a case using shell script.

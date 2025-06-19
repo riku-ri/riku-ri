@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-${mkdir} ${1%/*}
-${touch} $1
+${mkdir:-mkdir -p} ${1%/*}
+${touch:-touch} $1
