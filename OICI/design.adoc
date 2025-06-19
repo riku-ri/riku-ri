@@ -4,17 +4,15 @@
 
 = {i}
 
-== {i}
-
 {ii}
 
 ---
 
-This page describe how and why {i} is designed.
+About how and why {i} is designed.
 
 ---
 
-=== a minimal example `mkpath`
+== a minimal example `mkpath`
 
 {i} is abbr of {ii},
 it talks about how to send {apo} from a command to another command.
@@ -111,3 +109,26 @@ Otherwise 2 programs are named the same.
 
 Some shell disable call a program in a variable(such as `fish`).
 But POSIX shell support this.
+
+== For non-shell programs
+
+The example above `mkpath` is a case using shell script.
+Because shell script is a typically program that frequently call
+other programs.
+
+For other programs,
+that written by any human readable words or letters,
+and contain concept similar to "variable",
+and may need to call other programs.
+{i} also define how to do:
+
+* Save all probable {apo} an the program name in a variable
+* In the statement that call the program,
+	never set additional {apo} ouside the set variable,
+	if the {apo} is sent to the program
+
+Sometimes the language does not require a string like shell,
+but maybe a list, object or any structure defined by the language.
+This does not break {i},
+{i} just define that all {apo} and the program name must be in a single variable,
+no matter how the variable should be.

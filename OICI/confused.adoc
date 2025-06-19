@@ -1,0 +1,47 @@
+:i: link:.[OCIC]
+:ii: pass:[<b>O</b>ptions <b>I</b>s <b>C</b>ommand <b>I</b>tself]
+:apo: argument/parameter/option
+
+= {i}
+
+{ii}
+
+---
+
+About some confused cases.
+
+---
+
+=== Function arguments and {i}
+
+In a programming language,
+function is rarely treated as another program.
+
+So {i} is independent of function call in most language.
+
+In other words,
+how to design function argument is more about how to do inside a program,
+but not about _How to call other programs_.
+
+=== Process, thread and {i}
+
+:pt: process/thread
+
+A new {pt} is similar to call another program in a program.
+
+But {i} does not alawys restricts a {pt} in a program.
+
+In most cases, if the {pt} execute a **file** in filesystem,
+{i} define:
+
+* The {apo} sent to the **file** and the file to be executed
+	must to be in the same variable
+* The {pt} must execute the file by the variable but not the file name and option
+
+=== When the API did not support run a concatenated string
+
+This does not break {i}.
+
+{i} just define that all {apo} and the program name must be in a single variable,
+no matter how the variable should be.
+The variable can be a list, object or any structure defined by the language.

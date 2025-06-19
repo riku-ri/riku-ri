@@ -4,8 +4,6 @@
 
 = {i}
 
-== {i}
-
 {ii}
 
 ---
@@ -35,3 +33,7 @@ ____
 	the system is is compliant with {i}.
 
 ---
+
+link:design.adoc[design.adoc] is about how and why {i} is designed.
+
+link:confused.adoc[confused.adoc] is about some confused cases.
