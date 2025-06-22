@@ -1,3 +1,5 @@
+:showtitle:
+:doctype: article
 :i: link:.[OCIC]
 :ii: pass:[<b>O</b>ptions <b>I</b>s <b>C</b>ommand <b>I</b>tself]
 :apo: argument/parameter/option
